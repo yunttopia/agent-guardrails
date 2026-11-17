@@ -15,7 +15,7 @@ export function planHasUnderstatedStep(plan: Obj, toolRisks: Readonly<Record<str
   for (const it of items) {
     const steps = it !== null && typeof it === "object" && Array.isArray((it as Obj)["steps"]) ? ((it as Obj)["steps"] as unknown[]) : [];
     for (const s of steps) {
-      if (s === null || typeof s !== "object") continue;
+      if (s === null || typeof s !== "object" || Array.isArray(s)) return true;   // a malformed step is refused (closed default)
       const tool = (s as Obj)["tool"];
       // Unknown or missing tools count as the highest risk (closed default).
       const known = typeof tool === "string" && Object.prototype.hasOwnProperty.call(toolRisks, tool);

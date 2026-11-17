@@ -65,7 +65,9 @@ export interface VerifyOptions { approval_key_hex: string; now: Date; task_id: s
 export function verifyToken(token: unknown, o: VerifyOptions): { ok: true } | { ok: false; reason: VerifyFailure } {
   if (!isObj(token) || typeof token["mac"] !== "string" || typeof token["expires_at"] !== "string") return { ok: false, reason: "malformed" };
   const { mac, ...rest } = token;
-  if (!safeEqual(mac as string, "hmac-sha256:" + hmacHex(o.approval_key_hex, jcs(rest)))) return { ok: false, reason: "bad_mac" };
+  let body: string;
+  try { body = jcs(rest); } catch { return { ok: false, reason: "malformed" }; }   // e.g. a non-integer number edited into the token
+  if (!safeEqual(mac as string, "hmac-sha256:" + hmacHex(o.approval_key_hex, body))) return { ok: false, reason: "bad_mac" };
   const now = o.now.getTime();
   let expires: number, start: number | null;
   try {

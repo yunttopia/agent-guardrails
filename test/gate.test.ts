@@ -26,6 +26,10 @@ describe("step risk", () => {
     expect(planHasUnderstatedStep(plan([{ tool: "wire.transfer", risk: "money_out" }]), risks)).toBe(false);
     expect(planHasUnderstatedStep(plan([{ risk: "outbound" }]), risks)).toBe(true);
   });
+  it("refuses plans whose steps are not objects", () => {
+    const risks = { "message.send": "outbound" } as const;
+    for (const bad of ["message.send", null, 1, ["message.send"]]) expect(planHasUnderstatedStep({ items: [{ steps: [bad] }] }, risks)).toBe(true);
+  });
 });
 
 describe("step id uniqueness", () => {
@@ -83,6 +87,11 @@ describe("approval tokens", () => {
     const w = mintToken(base({ execution_window: { start: "2026-01-01T20:00:00+09:00", end: "2026-01-02T02:00:00+09:00" } }), { approval_key_hex: KEY });
     expect(verifyToken(w, check)).toEqual({ ok: false, reason: "not_yet" });
     expect(verifyToken(w, { ...check, now: new Date("2026-01-01T21:00:00+09:00") })).toEqual({ ok: true });
+  });
+  it("verifyToken returns malformed (does not throw) for a non-integer number edited into the token", () => {
+    const t = mintToken(base(), { approval_key_hex: KEY });
+    const check = { approval_key_hex: KEY, now: new Date("2026-01-01T10:00:00+09:00"), task_id: "t-1", plan_sha256: base().plan_sha256, action: "message.send" };
+    expect(verifyToken({ ...t, stage: 1.5 }, check)).toEqual({ ok: false, reason: "malformed" });
   });
   it("execution window: at most 12h long and starting within 24h", () => {
     const ok = base({ execution_window: { start: "2026-01-01T20:00:00+09:00", end: "2026-01-02T02:00:00+09:00" } });
