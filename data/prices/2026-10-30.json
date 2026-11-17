@@ -1,0 +1,112 @@
+{
+ "schema": "agent-guardrails.prices/v0",
+ "version": "2026-10-30",
+ "unit": "usd_micro_per_1m_tokens",
+ "fx": {
+  "mkrw_per_usd": null,
+  "source": null,
+  "checked": null
+ },
+ "models": {
+  "claude-haiku-5-5": {
+   "provider": "anthropic",
+   "input": 100000,
+   "output": 500000,
+   "cache_read": 10000,
+   "cache_write": null,
+   "tiers": null,
+   "source": "https://docs.claude.com/en/docs/about-claude/pricing",
+   "checked": "2026-10-30"
+  },
+  "claude-opus-5-5": {
+   "provider": "anthropic",
+   "input": 4000000,
+   "output": 20000000,
+   "cache_read": 200000,
+   "cache_write": null,
+   "tiers": null,
+   "source": "https://docs.claude.com/en/docs/about-claude/pricing",
+   "checked": "2026-10-30"
+  },
+  "claude-sonnet-5-5": {
+   "provider": "anthropic",
+   "input": 2000000,
+   "output": 10000000,
+   "cache_read": 100000,
+   "cache_write": null,
+   "tiers": null,
+   "source": "https://docs.claude.com/en/docs/about-claude/pricing",
+   "checked": "2026-10-30"
+  },
+  "gpt-6-astra": {
+   "provider": "openai",
+   "input": 10000000,
+   "output": 50000000,
+   "cache_read": 1000000,
+   "cache_write": null,
+   "tiers": null,
+   "source": "https://platform.openai.com/docs/pricing",
+   "checked": "2026-10-30"
+  },
+  "gpt-6-luna": {
+   "provider": "openai",
+   "input": 100000,
+   "output": 500000,
+   "cache_read": 10000,
+   "cache_write": null,
+   "tiers": null,
+   "source": "https://platform.openai.com/docs/pricing",
+   "checked": "2026-10-30"
+  },
+  "gpt-6.1-sol": {
+   "provider": "openai",
+   "input": 2000000,
+   "output": 10000000,
+   "cache_read": 100000,
+   "cache_write": null,
+   "tiers": null,
+   "source": "https://platform.openai.com/docs/pricing",
+   "checked": "2026-10-30"
+  },
+  "gpt-6.1-terra": {
+   "provider": "openai",
+   "input": 1000000,
+   "output": 5000000,
+   "cache_read": 50000,
+   "cache_write": null,
+   "tiers": null,
+   "source": "https://platform.openai.com/docs/pricing",
+   "checked": "2026-10-30"
+  },
+  "gemini-3.8-flash": {
+   "provider": "google",
+   "input": 750000,
+   "output": 3750000,
+   "cache_read": 75000,
+   "cache_write": null,
+   "tiers": null,
+   "source": "https://ai.google.dev/gemini-api/docs/pricing?hl=en",
+   "checked": "2026-10-30"
+  },
+  "gemini-4-argon": {
+   "provider": "google",
+   "input": 2000000,
+   "output": 10000000,
+   "cache_read": 100000,
+   "cache_write": null,
+   "tiers": null,
+   "source": "https://ai.google.dev/gemini-api/docs/pricing?hl=en",
+   "checked": "2026-10-30"
+  },
+  "qwen3.7-plus": {
+   "provider": "alibaba",
+   "input": 400000,
+   "output": 1600000,
+   "cache_read": null,
+   "cache_write": null,
+   "tiers": null,
+   "source": "https://www.alibabacloud.com/help/en/model-studio/model-pricing",
+   "checked": "2026-10-30"
+  }
+ }
+}

@@ -1,0 +1,239 @@
+{
+ "version": "routing-2026-11-09.1",
+ "enabledProviders": [
+  "anthropic",
+  "openai",
+  "google"
+ ],
+ "fallback": {
+  "retrySameModel": 2,
+  "autoSwitchOnlyBeforeFirstOutput": true,
+  "onRefusal": "ask_user",
+  "onUnknownPrice": "not_routable"
+ },
+ "modes": {
+  "default": "balanced",
+  "effortOrder": [
+   "none",
+   "minimal",
+   "low",
+   "medium",
+   "high",
+   "xhigh",
+   "max"
+  ],
+  "providerDefaultCompareAs": "medium",
+  "presets": {
+   "high": {
+    "active": "best",
+    "effortCap": null,
+    "overrides": {},
+    "concurrency": 3
+   },
+   "balanced": {
+    "active": "value",
+    "effortCap": "medium",
+    "overrides": {
+     "planning and hard judgment": {
+      "active": "best",
+      "effortCap": null
+     }
+    },
+    "concurrency": 2
+   },
+   "saver": {
+    "active": "value",
+    "effortCap": "low",
+    "overrides": {},
+    "concurrency": 1
+   }
+  },
+  "displayNames": {
+   "high": "thorough",
+   "balanced": "balanced",
+   "saver": "saver"
+  }
+ },
+ "taskKinds": {
+  "planning and hard judgment": {
+   "active": null,
+   "best": {
+    "model": "claude-opus-5-5",
+    "provider": "anthropic",
+    "effort": "xhigh"
+   },
+   "value": {
+    "model": "gpt-6.1-sol",
+    "provider": "openai",
+    "effort": "xhigh"
+   },
+   "backup": {
+    "model": "gpt-6-astra",
+    "provider": "openai",
+    "effort": "high"
+   }
+  },
+  "conversation and drafting": {
+   "active": null,
+   "best": {
+    "model": "claude-opus-5-5",
+    "provider": "anthropic",
+    "effort": "medium"
+   },
+   "value": {
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "effort": "low"
+   },
+   "backup": {
+    "model": "gpt-6.1-sol",
+    "provider": "openai",
+    "effort": "medium"
+   }
+  },
+  "notification text": {
+   "active": null,
+   "best": {
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "effort": "low"
+   },
+   "value": {
+    "model": "claude-haiku-5-5",
+    "provider": "anthropic",
+    "effort": "none"
+   },
+   "backup": {
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "effort": "low"
+   }
+  },
+  "browser step execution": {
+   "active": null,
+   "best": {
+    "model": "claude-opus-5-5",
+    "provider": "anthropic",
+    "effort": "xhigh"
+   },
+   "value": {
+    "model": "qwen3.7-plus",
+    "provider": "alibaba",
+    "effort": "provider-default"
+   },
+   "backup": {
+    "model": "gpt-6-astra",
+    "provider": "openai",
+    "effort": "high"
+   }
+  },
+  "research and summary": {
+   "active": null,
+   "best": {
+    "model": "gpt-6-astra",
+    "provider": "openai",
+    "effort": "high"
+   },
+   "value": {
+    "model": "gpt-6.1-sol",
+    "provider": "openai",
+    "effort": "high"
+   },
+   "backup": {
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "effort": "xhigh"
+   }
+  },
+  "structured extraction": {
+   "active": null,
+   "best": {
+    "model": "gpt-6.1-sol",
+    "provider": "openai",
+    "effort": "medium"
+   },
+   "value": {
+    "model": "claude-haiku-5-5",
+    "provider": "anthropic",
+    "effort": "medium"
+   },
+   "backup": {
+    "model": "gemini-3.8-flash",
+    "provider": "google",
+    "effort": "low"
+   }
+  },
+  "code and scripts": {
+   "active": null,
+   "best": {
+    "model": "claude-opus-5-5",
+    "provider": "anthropic",
+    "effort": "xhigh"
+   },
+   "value": {
+    "model": "gpt-6.1-terra",
+    "provider": "openai",
+    "effort": "max"
+   },
+   "backup": {
+    "model": "gpt-6-astra",
+    "provider": "openai",
+    "effort": "xhigh"
+   }
+  },
+  "router": {
+   "active": null,
+   "best": {
+    "model": "gpt-6.1-terra",
+    "provider": "openai",
+    "effort": "none"
+   },
+   "value": {
+    "model": "gpt-6-luna",
+    "provider": "openai",
+    "effort": "none"
+   },
+   "backup": {
+    "model": "claude-sonnet-5-5",
+    "provider": "anthropic",
+    "effort": "low"
+   }
+  },
+  "compaction and grading": {
+   "active": null,
+   "best": {
+    "model": "claude-haiku-5-5",
+    "provider": "anthropic",
+    "effort": "low"
+   },
+   "value": {
+    "model": "gpt-6-luna",
+    "provider": "openai",
+    "effort": "none"
+   },
+   "backup": {
+    "model": "gemini-3.8-flash",
+    "provider": "google",
+    "effort": "low"
+   }
+  },
+  "action review": {
+   "active": null,
+   "best": {
+    "model": "gpt-6.1-sol",
+    "provider": "openai",
+    "effort": "medium"
+   },
+   "value": {
+    "model": "claude-haiku-5-5",
+    "provider": "anthropic",
+    "effort": "medium"
+   },
+   "backup": {
+    "model": "gemini-3.8-flash",
+    "provider": "google",
+    "effort": "low"
+   }
+  }
+ }
+}
