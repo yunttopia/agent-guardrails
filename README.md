@@ -1,5 +1,7 @@
 # agent-guardrails
 
+[![CI](https://github.com/yunttopia/agent-guardrails/actions/workflows/ci.yml/badge.svg)](https://github.com/yunttopia/agent-guardrails/actions/workflows/ci.yml)
+
 Guardrail building blocks for tool-using LLM agents, extracted from a larger desktop agent and released on their own.
 
 The pieces are small and independent. Use the ones you need:
