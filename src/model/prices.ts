@@ -1,3 +1,4 @@
+import { seoulDate } from "../util/time.ts";
 // Integer price tables (USD micro per 1M tokens) and KRW conversion.
 export interface PriceRates { input: number; output: number; cache_read: number | null; cache_write: number | null }
 export interface PriceTier extends PriceRates { inputTokensAbove: number }
@@ -85,10 +86,6 @@ function divRoundHalfUp(n: bigint, d: bigint): bigint {
   return (n * 2n + d) / (2n * d);
 }
 
-function localDate(d: Date): string {
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
-}
-
 export function formatKrwApprox(mkrw: number): string {
   if (mkrw <= 0) return "KRW 0";
   if (mkrw < 1000) return "under KRW 1";
@@ -131,7 +128,7 @@ export class PriceBook {
     const hit = this.find(provider, model);
     if (hit === null || this.fxFor(hit.table) === null || hit.price.input === null || hit.price.output === null) return false;
     const until = hit.price.valid_until;
-    return until == null || localDate((this.opts.now ?? (() => new Date()))()) <= until;
+    return until == null || seoulDate((this.opts.now ?? (() => new Date()))()) <= until;
   }
 
   private rates(price: ModelPrice, promptTokens: number): PriceRates {
